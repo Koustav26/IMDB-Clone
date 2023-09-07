@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-
 import "./card.css";
-
 import { Link } from "react-router-dom";
 
 const Cards = ({ movie }) => {
-  const [isLoading, setIsLoading] = useSate(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);
   }, []);
+
   return (
     <>
       {isLoading ? (
@@ -23,8 +22,8 @@ const Cards = ({ movie }) => {
         </div>
       ) : (
         <Link
-          to={`movie/${movie.id}`}
-          style={{ textDecoration: "none", color: white }}
+          to={`/movie/${movie.id}`}
+          style={{ textDecoration: "none", color: "white" }}
         >
           <div className="cards">
             <img
@@ -32,17 +31,16 @@ const Cards = ({ movie }) => {
               src={`https://image.tmdb.org/t/p/original${
                 movie ? movie.poster_path : ""
               }`}
-              alt="posterimage"
             />
             <div className="cards__overlay">
-              <div className="cards__title">
-                {movie ? movie.release_date : ""}
+              <div className="card__title">
+                {movie ? movie.original_title : ""}
               </div>
               <div className="card__runtime">
                 {movie ? movie.release_date : ""}
                 <span className="card__rating">
                   {movie ? movie.vote_average : ""}
-                  <i className="fas-fa-star" />
+                  <i className="fas fa-star" />
                 </span>
               </div>
               <div className="card__description">
